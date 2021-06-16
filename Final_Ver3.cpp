@@ -73,7 +73,7 @@ class Student{
 				strcpy(grade,"Bad");
 			}
 			else if(gpa>=2&&gpa<=2.49){
-				strcpy(grade,"gpa");
+				strcpy(grade,"Average");
 			}
 			else if(gpa>=2.5&&gpa<=3.19){
 				strcpy(grade,"Good");
