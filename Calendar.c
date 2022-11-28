@@ -9,7 +9,7 @@ int dayOfWeek(int day, int month, int year);
 void dayName(int index);
 void monthName(int month);
 void yearName(int year);
-void astrologicalSign(int day,int month);
+void zodiacSign(int day,int month);
 void fullCalender(int day, int month, int year);
 void printMonth(int month,int year);
 void setColor(int ForgC);
@@ -31,7 +31,7 @@ int main(){
 		printf("1.Show team members.\n");
 		printf("2.Show introduction.\n");
 		printf("3.Calendar.\n");
-		printf("4.Check your astrological sign.\n");
+		printf("4.Check your zodiac sign.\n");
 		printf("5.Exit\n\nEnter your option : ");
 		scanf("%i",&choice);
 		system("cls");	
@@ -89,8 +89,8 @@ int main(){
 				printf("Enter your birthday (DD MM) : ");
 				scanf("%d %d",&d,&m);
 				system("cls");
-				printf("Your astrological sign is ");
-				astrologicalSign(d,m);
+				printf("Your zodiac sign is ");
+				zodiacSign(d,m);
 				printf("\nPress any key to continue...");
 				getch();
 				break;
@@ -110,7 +110,7 @@ void teamMember(){
 }
 void introduction(){
 	printf("You can check for date, print full month Calender, or even Zodaic sign.\n");
-	printf("Update version 1.2 : Check astrological sign\n");
+	printf("Update version 1.2 : Check zodiac sign\n");
 	printf("This version may still contain a few bugs");
 }
 int daysOfMonth(int month, int year){
@@ -194,7 +194,7 @@ void yearName(int year){
 		case 3 : printf("The Pig"); 	break;
 	}
 }
-void astrologicalSign(int day,int month){
+void zodiacSign(int day,int month){
 	if((month==12&&day>=22)||(month==1&&day<=19)){
 		printf("Capricorn");
 	}
