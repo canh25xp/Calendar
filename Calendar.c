@@ -49,7 +49,7 @@ int main(){
 			case 3 :	
 				printf("Enter date (DD MM YYYY) : ");
 				begin :
-				scanf("%i %i %i",&d,&m,&y);
+				scanf("%d %d %d",&d,&m,&y);
 				if(d<=0||d>=32||m<=0||m>=13||y<=0){
 					system("cls");
 					setColor(12);
@@ -87,7 +87,7 @@ int main(){
 				break;
 			case 4 :
 				printf("Enter your birthday (DD MM) : ");
-				scanf("%i %i",&d,&m);
+				scanf("%d %d",&d,&m);
 				system("cls");
 				printf("Your astrological sign is ");
 				astrologicalSign(d,m);
