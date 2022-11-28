@@ -18,47 +18,41 @@ void nextMonth(int *month, int *year);
 void previousMonth(int *month, int *year);
 void teamMember();
 void introduction();
-void gotoxy (int x, int y);
 
-COORD xy = {0, 0};
-#define VERSION 1.5
 int main(){
 	SetConsoleTitle("This is simply a calender");
-	setColorAndBackground(15,9); // White word, blue background
 	int d,m,y;
-	char choice=0;
+	int choice=0;
 	char ch='a';
 	while(1){
 		system("cls");
-		printf("A wibu team production\nVerion %.1f\n",VERSION);
+		printf("A wibu team production\nVerion 1.2\n");
 		printf("-----------------------\n");
-		printf("Enter your option (1-5) then press enter :\n\n");
 		printf("1.Show team members.\n");
 		printf("2.Show introduction.\n");
 		printf("3.Calendar.\n");
 		printf("4.Check your astrological sign.\n");
-		printf("5.Exit.\n");
-		gotoxy(43,3);
-		scanf("%c",&choice);
+		printf("5.Exit\n\nEnter your option : ");
+		scanf("%i",&choice);
 		system("cls");	
 		switch(choice){
-			case '1' :
+			case 1 :
 				teamMember();
 				printf("\nPress any key to continue...");
 				getch();
 				break;
-			case '2' : 
+			case 2 : 
 				introduction();
 				printf("\nPress any key to continue...");
 				getch();
 				break;
-			case '3' :	
+			case 3 :	
 				printf("Enter date (DD MM YYYY) : ");
 				begin :
-				scanf("%d %d %d",&d,&m,&y);
-				if(d<=0||d>=32||m<=0||m>=13||y<=0||(checkLeapYear(y)==0&&m==2&&d>=29)){
+				scanf("%i %i %i",&d,&m,&y);
+				if(d<=0||d>=32||m<=0||m>=13||y<=0){
 					system("cls");
-					setColor(4);
+					setColor(12);
 					printf("Error ! The day %i/%i/%i does not exist.",d,m,y);
 					setColor(15);
 					printf("\nEnter date again (DD MM YYYY) : ");
@@ -69,8 +63,7 @@ int main(){
 				yearName(y);
 				printf(" year\n\n");
 				fullCalender(d,m,y);
-				gotoxy(0,12);
-				printf("Press 'n' to next month, 'p' to previous month, 'e' to exit...");
+				printf("\n\nPress 'n' to next month, 'p' to previous month, 'e' to exit...");
 				while(ch!='e'){
 					ch=getch();
 					if(ch=='n'){
@@ -80,8 +73,6 @@ int main(){
 						yearName(y);
 						printf("\n\n");
 						printMonth(m,y);
-						gotoxy(0,12);
-						printf("Press 'n' to next month, 'p' to previous month, 'e' to exit...");
 					}
 					else if(ch=='p'){
 						previousMonth(&m,&y);
@@ -90,21 +81,20 @@ int main(){
 						yearName(y);
 						printf("\n\n");		
 						printMonth(m,y);
-						gotoxy(0,12);
-						printf("Press 'n' to next month, 'p' to previous month, 'e' to exit...");
 					}
+					printf("\n\nPress 'n' to next month, 'p' to previous month, 'e' to exit...");
 				}
 				break;
-			case '4' :
+			case 4 :
 				printf("Enter your birthday (DD MM) : ");
-				scanf("%d %d",&d,&m);
+				scanf("%i %i",&d,&m);
 				system("cls");
 				printf("Your astrological sign is ");
 				astrologicalSign(d,m);
 				printf("\nPress any key to continue...");
 				getch();
 				break;
-			case '5' : 
+			case 5 : 
 				exit(0);		
 			}
 	}
@@ -121,9 +111,6 @@ void teamMember(){
 void introduction(){
 	printf("You can check for date, print full month Calender, or even Zodaic sign.\n");
 	printf("Update version 1.2 : Check astrological sign\n");
-	printf("Update version 1.3 : New User interface color\n");
-	printf("Update version 1.4 : Change data type specifier : i > d\n");
-	printf("Update version 1.5 : Bug fixes\n");
 	printf("This version may still contain a few bugs");
 }
 int daysOfMonth(int month, int year){
@@ -148,9 +135,9 @@ int daysOfMonth(int month, int year){
 }
 int checkLeapYear(int year){
 	if(year%4==0&&year%100!=0||year%400==0)
-		return 1; //leapYear
+		return 1;
 	else
-		return 0; //NormalYear
+		return 0;	
 	//Reference : https://en.wikipedia.org/wiki/Leap_year	
 }
 int dayOfWeek(int day, int month, int year){
@@ -162,7 +149,7 @@ int dayOfWeek(int day, int month, int year){
 	return index;
 	//Reference : https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week
 	//Sakamoto’s Algorithm
-}
+}	
 void dayName(int index){
 	switch(index){
 		case 0 : printf("Sunday");		break;
@@ -245,7 +232,7 @@ void astrologicalSign(int day,int month){
 		printf("Sagittarius");
 	}
 	else{
-		setColor(4);
+		setColor(12);
 		printf("Invalid date");
 		setColor(15);
 	}
@@ -264,7 +251,7 @@ void fullCalender(int day, int month, int year){
 	index=6-index;
 	for(i=1;i<=days;i++){
 		if(i==day)
-			setColor(0);
+			setColor(12);
 		else
 			setColor(15);
 		if(i<10)
@@ -324,12 +311,10 @@ void setColor(int ForgC){
         wColor = (csbi.wAttributes & 0xF0) + (ForgC & 0x0F);
     	SetConsoleTextAttribute(hStdOut, wColor);
     }
+    return;
 }
 void setColorAndBackground(int ForgC, int BackC){
     WORD wColor = ((BackC & 0x0F) << 4) + (ForgC & 0x0F);;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
-}
-void gotoxy (int x, int y){
-    xy.X = x; xy.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), xy);
+    return;
 }
