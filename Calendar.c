@@ -33,7 +33,7 @@ int main(){
 		printf("3.Calendar.\n");
 		printf("4.Check your zodiac sign.\n");
 		printf("5.Exit\n\nEnter your option : ");
-		scanf("%i",&choice);
+		scanf("%d",&choice);
 		system("cls");	
 		switch(choice){
 			case 1 :
@@ -53,13 +53,13 @@ int main(){
 				if(d<=0||d>=32||m<=0||m>=13||y<=0){
 					system("cls");
 					setColor(12);
-					printf("Error ! The day %i/%i/%i does not exist.",d,m,y);
+					printf("Error ! The day %d/%d/%d does not exist.",d,m,y);
 					setColor(15);
 					printf("\nEnter date again (DD MM YYYY) : ");
 					goto begin;
 				}
 				system("cls");
-				printf("%i ",y);
+				printf("%d ",y);
 				yearName(y);
 				printf(" year\n\n");
 				fullCalender(d,m,y);
@@ -69,7 +69,7 @@ int main(){
 					if(ch=='n'){
 						nextMonth(&m,&y);
 						system("cls");
-						printf("%i ",y);				
+						printf("%d ",y);				
 						yearName(y);
 						printf("\n\n");
 						printMonth(m,y);
@@ -77,7 +77,7 @@ int main(){
 					else if(ch=='p'){
 						previousMonth(&m,&y);
 						system("cls");	
-						printf("%i ",y);					
+						printf("%d ",y);					
 						yearName(y);
 						printf("\n\n");		
 						printMonth(m,y);
@@ -255,9 +255,9 @@ void fullCalender(int day, int month, int year){
 		else
 			setColor(15);
 		if(i<10)
-			printf("%i   ",i);		
+			printf("%d   ",i);		
 		else
-			printf("%i  ",i);
+			printf("%d  ",i);
 		while(index==0){
 			printf("\n");
 			index=7;
@@ -279,9 +279,9 @@ void printMonth(int month,int year){
 	index=6-index;
 	for(i=1;i<=days;i++){
 		if(i<10)
-			printf("%i   ",i);		
+			printf("%d   ",i);		
 		else
-			printf("%i  ",i);
+			printf("%d  ",i);
 		while(index==0){
 			printf("\n");
 			index=7;
