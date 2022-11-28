@@ -161,7 +161,7 @@ int dayOfWeek(int day, int month, int year){
 	index = (year + year/4 - year/100 + year/400 + t[month-1] + day) % 7 ;
 	return index;
 	//Reference : https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week
-	//Sakamoto’s Algorithm
+	//Sakamotoâ€™s Algorithm
 }
 void dayName(int index){
 	switch(index){
